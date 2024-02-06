@@ -1,0 +1,28 @@
+uses: 
+with:
+  pin-name: 'My personal site'
+  path: './build'
+  pinata-api-key: 69c741f94349e15d47bf
+  pinata-secret-api-key: QmPS8XMKg2A3G8M3ajZPDdX3D2WygRPiTLEv6zA3mSmEcz
+  remove-old: false
+on: [push]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: Doing test deploy to Pinata
+    steps:
+      - uses: ShangzhiLou/Decentralization-Technologies-Shangzhi-LOU-TD2@1.0
+      - name: Pinata deploy action step
+        id: deploy
+        uses: ShangzhiLou/Decentralization-Technologies-Shangzhi-LOU-TD2@1.0
+        with:
+          pin-name: 'Action'
+          path: './.github/workflows/site2test'
+          pinata-api-key: ${{ 69c741f94349e15d47bf }}
+          pinata-secret-api-key: ${{ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiI1YTRmMjZmOS02ZmYxLTQ5YzUtYTIxOS00MjUwNjFiMTU2ZWIiLCJlbWFpbCI6InNoZXJ3aW5sb3UwMUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicGluX3BvbGljeSI6eyJyZWdpb25zIjpbeyJpZCI6IkZSQTEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX0seyJpZCI6Ik5ZQzEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX1dLCJ2ZXJzaW9uIjoxfSwibWZhX2VuYWJsZWQiOmZhbHNlLCJzdGF0dXMiOiJBQ1RJVkUifSwiYXV0aGVudGljYXRpb25UeXBlIjoic2NvcGVkS2V5Iiwic2NvcGVkS2V5S2V5IjoiNjljNzQxZjk0MzQ5ZTE1ZDQ3YmYiLCJzY29wZWRLZXlTZWNyZXQiOiIwOTBiNjkyM2Q2YWRkOTllOWYyNDFhOWMzNzNkNjlkNGZkNzI2ZTdjNDQ5MTZkNzI5NzdlODM2M2M2NjEyMzM1IiwiaWF0IjoxNzA3MjQ2OTQ3fQ.HJZjTWMzhFU61BJr60E696L_aG4UDbf0pN5DbWc3f6Y }}
+          verbose: true
+          remove-old: false
+      # Use the output from the `deploy` step
+      - name: Get the output hash
+        run: echo "The hash was ${{ steps.deploy.outputs.hash }}"
